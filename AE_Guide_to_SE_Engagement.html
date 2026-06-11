@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AE Guide to SE Engagement | OneSignal</title>
+<style>
+/* Using OneSignal system font stack - no Google Fonts needed */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* OneSignal brand palette */
+  --navy:   #051B2C;   /* primary text / dark bg */
+  --blue:   #4E50D1;   /* primary brand purple-blue */
+  --sky:    #7274DA;   /* medium purple (partner bar accent) */
+  --lblue:  #EEEEFF;   /* light purple tint for backgrounds */
+  --accent: #4E50D1;   /* same as brand blue - used for highlights */
+  --lacct:  #F0F0FD;   /* very light purple for callout boxes */
+  --green:  #0D7A55;   /* success / validated green */
+  --lgreen: #E6F5F0;
+  --amber:  #B45309;
+  --lamber: #FFF8EC;
+  --white:  #FFFFFF;
+  --off:    #F6F7FB;   /* near-white page bg with slight purple tint */
+  --border: #E0E1F5;   /* purple-tinted border */
+  --text:   #051B2C;   /* OneSignal body text */
+  --muted:  #5C6070;
+  --mid:    #8890A4;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, 'system-ui', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: var(--off);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, #051B2C 0%, #1a1c5e 60%, #4E50D1 100%);
+  padding: 48px 40px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: rgba(114,116,218,0.18);
+  pointer-events: none;
+}
+.hero-eyebrow {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: #A5A7F0;
+  margin-bottom: 12px;
+}
+.hero h1 {
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 14px;
+  max-width: 640px;
+}
+.hero p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.65);
+  max-width: 580px;
+  margin-bottom: 28px;
+}
+.hero-stat-row {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.hero-stat {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(114,116,218,0.35);
+  border-radius: 10px;
+  padding: 14px 20px;
+}
+.hero-stat strong {
+  display: block;
+  font-size: 22px; font-weight: 800;
+  color: #fff;
+}
+.hero-stat span {
+  font-size: 11px; color: rgba(255,255,255,0.5);
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+
+/* ── NAV TABS ── */
+.nav-wrap {
+  background: #ffffff;
+  border-bottom: 1px solid #E0E1F5;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 6px rgba(26,43,74,0.07);
+}
+.nav-tabs {
+  display: flex;
+  overflow-x: auto;
+  padding: 0 32px;
+  gap: 0;
+  scrollbar-width: none;
+}
+.nav-tabs::-webkit-scrollbar { display: none; }
+.tab-btn {
+  padding: 16px 20px;
+  font-size: 13px; font-weight: 600;
+  color: var(--muted);
+  border: none; background: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s, border-color 0.15s;
+}
+.tab-btn:hover { color: #4E50D1; }
+.tab-btn.active {
+  color: var(--navy);
+  border-bottom-color: #4E50D1;
+}
+
+/* ── CONTENT PANES ── */
+.pane { display: none; padding: 40px 40px 60px; max-width: 900px; margin: 0 auto; }
+.pane.active { display: block; }
+
+/* ── SECTION HEADER ── */
+.section-head {
+  margin-bottom: 28px;
+}
+.section-head .eyebrow {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.10em; text-transform: uppercase;
+  color: #4E50D1;
+  margin-bottom: 6px;
+}
+.section-head h2 {
+  font-size: 22px; font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.section-head p {
+  font-size: 14px; color: var(--muted);
+  max-width: 640px;
+}
+
+/* ── CARDS ── */
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 16px;
+  transition: box-shadow 0.2s;
+}
+.card:hover { box-shadow: 0 4px 16px rgba(26,43,74,0.08); }
+.card-title {
+  font-size: 14px; font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 6px;
+  display: flex; align-items: center; gap: 8px;
+}
+.card-body { font-size: 13.5px; color: #3D4F6E; line-height: 1.65; }
+.card-body ul { padding-left: 18px; margin-top: 8px; }
+.card-body li { margin-bottom: 5px; }
+
+/* ── GRID ── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 680px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .pane { padding: 24px 20px 48px; }
+  .hero { padding: 32px 20px 28px; }
+}
+
+/* ── SIGNAL BADGES ── */
+.badge {
+  display: inline-block;
+  padding: 3px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.badge-green { background: var(--lgreen); color: var(--green); }
+.badge-blue  { background: var(--lblue);  color: var(--blue);  }
+.badge-amber { background: var(--lamber); color: var(--amber); }
+.badge-red   { background: #FEE2E2;       color: #B91C1C;      }
+.badge-navy  { background: #E8ECF5;       color: var(--navy);  }
+
+/* ── DECISION TREE ── */
+.decision-tree {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.dt-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.dt-row:last-child { border-bottom: none; }
+.dt-row.header {
+  background: #051B2C;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.dt-cell {
+  padding: 13px 16px;
+  color: #3D4F6E;
+}
+.dt-cell.header-cell { color: rgba(255,255,255,0.7); }
+.dt-row:not(.header):nth-child(even) { background: var(--off); }
+
+/* ── TIMELINE ── */
+.timeline { position: relative; padding-left: 36px; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 10px; top: 6px; bottom: 6px;
+  width: 2px;
+  background: var(--border);
+}
+.tl-item {
+  position: relative;
+  margin-bottom: 28px;
+}
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -30px; top: 5px;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: #4E50D1;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 2px #4E50D1;
+}
+.tl-label {
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: #4E50D1;
+  margin-bottom: 4px;
+}
+.tl-title {
+  font-size: 14px; font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+.tl-body { font-size: 13px; color: #3D4F6E; }
+.tl-body ul { padding-left: 16px; margin-top: 6px; }
+.tl-body li { margin-bottom: 4px; }
+
+/* ── CHECKLIST ── */
+.checklist { list-style: none; }
+.checklist li {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13.5px; color: #3D4F6E;
+}
+.checklist li:last-child { border-bottom: none; }
+.check-icon {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: #E6F5F0;
+  color: #0D7A55;
+  font-size: 11px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.check-icon.warn {
+  background: var(--lamber); color: var(--amber);
+}
+
+/* ── SIGNAL TRACKER ── */
+.signal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.signal-card {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.signal-card:hover { border-color: #4E50D1; box-shadow: 0 3px 12px rgba(78,80,209,0.12); }
+.signal-card.done { border-color: #0D7A55; background: #E6F5F0; }
+.signal-num {
+  font-size: 11px; font-weight: 800;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+.signal-title { font-size: 13.5px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+.signal-what  { font-size: 12px; color: var(--muted); }
+.signal-proof { font-size: 12px; color: var(--green); margin-top: 6px; display: none; font-style: italic; }
+.signal-card.done .signal-proof { display: block; }
+
+.win-bar-wrap { margin-top: 20px; }
+.win-bar-label { font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 6px; display: flex; justify-content: space-between; }
+.win-bar-track { height: 10px; background: var(--border); border-radius: 10px; overflow: hidden; }
+.win-bar-fill { height: 100%; background: var(--green); border-radius: 10px; transition: width 0.4s; }
+
+/* ── HIGHLIGHT BOX ── */
+.highlight {
+  border-left: 3px solid #4E50D1;
+  background: #F0F0FD;
+  padding: 14px 18px;
+  border-radius: 0 10px 10px 0;
+  font-size: 13px;
+  color: #1a1c5e;
+  margin: 16px 0;
+}
+.note {
+  border-left: 3px solid #7274DA;
+  background: #EEEEFF;
+  padding: 14px 18px;
+  border-radius: 0 10px 10px 0;
+  font-size: 13px;
+  color: #1a1c5e;
+  margin: 16px 0;
+}
+
+/* ── ACCORDION ── */
+.accordion { background: #fff; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 16px; }
+.acc-header {
+  padding: 16px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+  font-size: 13.5px; font-weight: 700; color: var(--navy);
+}
+.acc-header:hover { background: var(--off); }
+.acc-arrow { font-size: 12px; color: var(--muted); transition: transform 0.2s; }
+.acc-header.open .acc-arrow { transform: rotate(90deg); }
+.acc-body { display: none; padding: 0 20px 18px; font-size: 13px; color: #3D4F6E; line-height: 1.65; }
+.acc-body.open { display: block; }
+.acc-body ul { padding-left: 18px; margin-top: 8px; }
+.acc-body li { margin-bottom: 5px; }
+
+/* ── FOOTER ── */
+.guide-footer {
+  background: #051B2C;
+  color: rgba(255,255,255,0.55);
+  font-size: 12px;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">OneSignal Solutions Engineering</div>
+  <h1>Your Guide to Working with SE</h1>
+  <p>When to engage, how to submit a great request, what we actually do, and how we win together technically.</p>
+  <div class="hero-stat-row">
+    <div class="hero-stat">
+      <strong>42%</strong>
+      <span>Win rate on SE-engaged deals &gt;$25K</span>
+    </div>
+    <div class="hero-stat">
+      <strong>73%</strong>
+      <span>of SE engagements = technical depth</span>
+    </div>
+    <div class="hero-stat">
+      <strong>4</strong>
+      <span>SEs covering Americas, EMEA &amp; APAC</span>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('when')">When to Engage SE</button>
+    <button class="tab-btn" onclick="showTab('request')">Submitting a Request</button>
+    <button class="tab-btn" onclick="showTab('whatse')">What SE Does</button>
+    <button class="tab-btn" onclick="showTab('technicalwin')">The Technical Win</button>
+    <button class="tab-btn" onclick="showTab('coverage')">Coverage Model</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ -->
+<!-- TAB 1: WHEN TO ENGAGE SE          -->
+<!-- ═══════════════════════════════════ -->
+<div id="tab-when" class="pane active">
+  <div class="section-head">
+    <div class="eyebrow">Section 1</div>
+    <h2>When to Engage SE</h2>
+    <p>SE is a capacity-constrained resource. Engagement is prioritized based on where it creates the most impact. Use this section to decide if and when to bring in your SE.</p>
+  </div>
+
+  <div class="highlight">
+    <strong>The key question:</strong> Is there genuine technical complexity that would benefit from an SE — or is this a conversation you can lead yourself?
+  </div>
+
+  <div class="decision-tree" style="margin-bottom:24px;">
+    <div class="dt-row header">
+      <div class="dt-cell header-cell">Situation</div>
+      <div class="dt-cell header-cell" style="text-align:center;">Involve SE?</div>
+      <div class="dt-cell header-cell">Why</div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-cell">Real technical complexity — multi-channel orchestration, custom data model, complex integrations</div>
+      <div class="dt-cell" style="text-align:center;"><span class="badge badge-green">✓ Yes</span></div>
+      <div class="dt-cell">SE unlocks architecture validation and de-risks the technical decision</div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-cell">Deal is $50K+ NNARR or strategic to the business</div>
+      <div class="dt-cell" style="text-align:center;"><span class="badge badge-green">✓ Yes</span></div>
+      <div class="dt-cell">SE impact compounds on larger deals — worth the investment</div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-cell">Prospect is evaluating Braze, Iterable, Klaviyo, or built in-house</div>
+      <div class="dt-cell" style="text-align:center;"><span class="badge badge-green">✓ Yes</span></div>
+      <div class="dt-cell">SE builds differentiated technical narrative and migration story</div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-cell">You need to scope a Trial or POC</div>
+      <div class="dt-cell" style="text-align:center;"><span class="badge badge-green">✓ Yes</span></div>
+      <div class="dt-cell">SE defines success criteria and structure — prevents unqualified evaluations</div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-cell">Stage 2+ with a clear technical question or validation need</div>
+      <div class="dt-cell" style="text-align:center;"><span class="badge badge-green">✓ Yes</span></div>
+      <div class="dt-cell">Right moment — deal has context and an SE can accelerate progression</div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-cell">Early discovery, no technical substance surfaced yet</div>
+      <div class="dt-cell" style="text-align:center;"><span class="badge badge-amber">Not Yet</span></div>
+      <div class="dt-cell">Complete discovery first — SE needs clear use case and pain to be effective</div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-cell">Quick pricing or generic product question</div>
+      <div class="dt-cell" style="text-align:center;"><span class="badge badge-red">✗ No</span></div>
+      <div class="dt-cell">Use #ask-solutions-engineering or Office Hours instead</div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-cell">You haven't completed basic SPICED discovery</div>
+      <div class="dt-cell" style="text-align:center;"><span class="badge badge-red">✗ No</span></div>
+      <div class="dt-cell">SE will ask you to go back — save everyone's time by doing discovery first</div>
+    </div>
+  </div>
+
+  <div class="section-head" style="margin-top:36px;">
+    <h2 style="font-size:18px;">What SEs Do Best (Objections We're Built For)</h2>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">🔄 Competitive Displacement</div>
+      <div class="card-body">Prospect is on Braze, Iterable, or another incumbent. SE builds the differentiated technical narrative, migration story, and side-by-side capability comparison.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">🧩 Data Model Complexity</div>
+      <div class="card-body">Prospect isn't sure OneSignal can handle their data architecture. SE maps their data flows to our User Model and Subscription model — in their language.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">🏗️ "We Built It Ourselves"</div>
+      <div class="card-body">SE quantifies the build-vs-buy trade-off, surfaces maintenance cost and risk, and repositions OneSignal as platform leverage — not just feature parity.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">🔐 InfoSec &amp; Architecture Review</div>
+      <div class="card-body">Prospect's engineering team has deep technical questions. SE leads architecture validation, security review support, and API/SDK depth conversations.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">🎯 "Prove It" Moments</div>
+      <div class="card-body">Prospect wants to see it work before committing. SE scopes a structured POC with defined success criteria — so it drives a decision, not a delay.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">📬 Multi-Channel Orchestration</div>
+      <div class="card-body">Prospect can't see how push + email + in-app + SMS works together. SE demonstrates Journeys and live multi-channel flows tied to their use case.</div>
+    </div>
+  </div>
+
+  <div class="note" style="margin-top:24px;">
+    <strong>Quick access for async questions:</strong> Use <strong>#ask-solutions-engineering</strong> in Slack for general technical questions, or attend <strong>SE Office Hours</strong> for guidance without needing a full request.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ -->
+<!-- TAB 2: SUBMITTING A REQUEST        -->
+<!-- ═══════════════════════════════════ -->
+<div id="tab-request" class="pane">
+  <div class="section-head">
+    <div class="eyebrow">Section 2</div>
+    <h2>How to Submit a Great SE Request</h2>
+    <p>Requests are submitted via Salesforce. The quality of your request directly determines how fast SE can engage and how well-prepared they'll be.</p>
+  </div>
+
+  <div class="highlight">
+    Weak requests get sent back. Requests missing context, objectives, or stakeholder info will be paused — SE will ask you to clarify before proceeding. Low-quality repeat submissions are escalated to sales managers.
+  </div>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-title" style="font-size:15px; margin-bottom:14px;">✅ What Every Strong Request Must Have</div>
+    <ul class="checklist">
+      <li>
+        <div class="check-icon">✓</div>
+        <div><strong>Situation / Why Change</strong> — What's prompting this prospect to evaluate now? What's the trigger?</div>
+      </li>
+      <li>
+        <div class="check-icon">✓</div>
+        <div><strong>Specific Pain</strong> — Not "improve engagement." What is actually broken or missing today?</div>
+      </li>
+      <li>
+        <div class="check-icon">✓</div>
+        <div><strong>Desired Business Outcome</strong> — Measurable if possible (e.g., improve mobile engagement by 15%, reduce churn by X%)</div>
+      </li>
+      <li>
+        <div class="check-icon">✓</div>
+        <div><strong>Buying Position</strong> — Build vs Buy / New to Messaging / Rip &amp; Replace / OneSignal Expansion</div>
+      </li>
+      <li>
+        <div class="check-icon">✓</div>
+        <div><strong>Current Tech Stack</strong> — What messaging tools are they on? Any known pain with those?</div>
+      </li>
+      <li>
+        <div class="check-icon">✓</div>
+        <div><strong>Meeting Objective</strong> — What should the customer decide or understand by the end of this session?</div>
+      </li>
+      <li>
+        <div class="check-icon">✓</div>
+        <div><strong>Stakeholder Mapping</strong> — Who attends? What are their titles and decision-making roles?</div>
+      </li>
+      <li>
+        <div class="check-icon">✓</div>
+        <div><strong>Meeting Type</strong> — See types below. Picking the right type helps SE prepare the right way.</div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section-head" style="margin-top:32px;">
+    <h2 style="font-size:18px;">Meeting Types — Pick the Right One</h2>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">Technical Discovery <span class="acc-arrow">▶</span></div>
+    <div class="acc-body">Understand the customer's messaging workflows, data model, and technical environment. Use when discovery is done but needs technical depth — unclear event/data structure, multiple systems, complex lifecycle needs. <strong>SE Effort: Medium.</strong></div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">Standard Demo <span class="acc-arrow">▶</span></div>
+    <div class="acc-body">Show core capabilities and general fit. Best for early-stage deals where the customer is still exploring. SE will cover user profile management, segmentation, channels, and lifecycle messaging concepts. <strong>SE Effort: Low.</strong></div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">Custom Demo <span class="acc-arrow">▶</span></div>
+    <div class="acc-body">Specific messaging workflows are defined — SE tailors the demo to the customer's actual use case, KPIs, and value pillars. Requires more prep. Requires strong context in the request. <strong>SE Effort: Medium–High.</strong></div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">Technical Discussion / Q&A <span class="acc-arrow">▶</span></div>
+    <div class="acc-body">Validate architecture, integrations, and technical feasibility. Ideal after an initial demo when the customer asks "how would this work in our system?" SE walks through data ingestion, event flow, identity model, and integration patterns. <strong>SE Effort: Medium.</strong></div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">Technical Air Cover <span class="acc-arrow">▶</span></div>
+    <div class="acc-body">AE leads the call, SE is present to answer targeted technical questions and reinforce credibility. Best for Commercial deals or situations where SE credibility is needed without deep solutioning. <strong>SE Effort: Low.</strong></div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">POC / Trial Scoping <span class="acc-arrow">▶</span></div>
+    <div class="acc-body">SE defines evaluation type, success criteria, scope, and timeline. Trials = early-stage, self-serve validation. POCs = structured, SE-led, higher effort. Always involve SE before committing to an evaluation — gray-area decisions should be routed through SE. <strong>SE Effort: High.</strong></div>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">Upsell Support <span class="acc-arrow">▶</span></div>
+    <div class="acc-body">Support expansion for existing customers. SE understands current usage, identifies gaps and expansion opportunities, and prepares tailored recommendations. <strong>SE Effort: Low–Medium.</strong></div>
+  </div>
+
+  <div class="note" style="margin-top:24px;">
+    <strong>What happens after you submit:</strong> SE reviews within 24 hours, claims the request, and tags you to confirm ownership and begin prep alignment. For Top Deals, SE engagement is proactive — no waiting required.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ -->
+<!-- TAB 3: WHAT SE DOES               -->
+<!-- ═══════════════════════════════════ -->
+<div id="tab-whatse" class="pane">
+  <div class="section-head">
+    <div class="eyebrow">Section 3</div>
+    <h2>What SE Actually Does</h2>
+    <p>SE's job isn't to "run demos." It's to reduce technical uncertainty at critical moments in the buying journey — so deals move forward with confidence.</p>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:28px;">
+    <div class="card" style="border-top: 3px solid #0D7A55;">
+      <div class="card-title">On Every Engagement</div>
+      <div class="card-body">
+        <ul>
+          <li>Assess Technical Win Readiness before accepting the request</li>
+          <li>Sync with AE 12–48 hrs before to align on agenda and objectives</li>
+          <li>Execute the engagement with a defined goal, not just a walkthrough</li>
+          <li>Track where the deal sits across the 5 Technical Win signals</li>
+          <li>Share post-engagement feedback, action items, and recommended next steps with the AE</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="border-top: 3px solid #7274DA;">
+      <div class="card-title">On Top / High-Touch Deals</div>
+      <div class="card-body">
+        <ul>
+          <li>Own the Technical Win strategy end-to-end</li>
+          <li>Lead discovery, demo design, and validation</li>
+          <li>Proactively engage and align technical stakeholders</li>
+          <li>Identify and resolve technical risks early</li>
+          <li>Scope and execute POCs with defined success criteria</li>
+          <li>Weekly 15-min AE–SE sync throughout the sales cycle</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-head" style="margin-top:8px;">
+    <h2 style="font-size:18px;">After Every Session — What to Expect from SE</h2>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-label">Step 1</div>
+      <div class="tl-title">Technical Win Status Update</div>
+      <div class="tl-body">SE shares where the deal stands across the 5 technical win signals — what's validated, what's open, what's at risk.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-label">Step 2</div>
+      <div class="tl-title">Action Items &amp; Recommended Next Steps</div>
+      <div class="tl-body">SE documents follow-ups, customer commitments, and what should happen next (technical discussion, POC, architecture review, etc.).</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-label">Step 3</div>
+      <div class="tl-title">Feedback to AE on Readiness &amp; Risks</div>
+      <div class="tl-body">SE shares observations on deal readiness, stakeholder gaps, technical risks surfaced, and anything the AE needs to follow up on.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-label">Step 4</div>
+      <div class="tl-title">SE Notes Updated in Salesforce</div>
+      <div class="tl-body">SE logs the engagement with date, outcome, and progression notes — this is the record used in pipeline reviews and inspection.</div>
+    </div>
+  </div>
+
+  <div class="highlight" style="margin-top:8px;">
+    <strong>SE engagement is not defined by activity.</strong> We don't measure success by the number of demos run. We measure it by whether we advanced the Technical Win — did the customer move from uncertainty to confidence?
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ -->
+<!-- TAB 4: THE TECHNICAL WIN           -->
+<!-- ═══════════════════════════════════ -->
+<div id="tab-technicalwin" class="pane">
+  <div class="section-head">
+    <div class="eyebrow">Section 4</div>
+    <h2>The Technical Win Framework</h2>
+    <p>A Technical Win isn't a single moment — it's built progressively across the deal. Use this tracker to understand where your deal stands.</p>
+  </div>
+
+  <div class="note">
+    <strong>The shift:</strong> We used to ask "Did we run a demo?" Now we ask "Did we achieve validation?" A deal should not progress through stages unless the required Technical Win signals are met.
+  </div>
+
+  <div class="section-head" style="margin-top:28px; margin-bottom:16px;">
+    <h2 style="font-size:16px;">The 5 Technical Win Signals — Click to mark as validated</h2>
+  </div>
+
+  <div class="signal-grid" id="signalGrid">
+    <div class="signal-card" onclick="toggleSignal(this, 0)">
+      <div class="signal-num">SIGNAL 01</div>
+      <div class="signal-title">Use Case Validation</div>
+      <div class="signal-what">Customer understands how they'll execute their messaging workflows in OneSignal end-to-end</div>
+      <div class="signal-proof">✓ Customer describes the workflow themselves</div>
+    </div>
+    <div class="signal-card" onclick="toggleSignal(this, 1)">
+      <div class="signal-num">SIGNAL 02</div>
+      <div class="signal-title">Architecture Fit</div>
+      <div class="signal-what">Data flow exists or is verbally confirmed — OneSignal fits within the customer's tech stack</div>
+      <div class="signal-proof">✓ Data flow diagram exists or verbally confirmed</div>
+    </div>
+    <div class="signal-card" onclick="toggleSignal(this, 2)">
+      <div class="signal-num">SIGNAL 03</div>
+      <div class="signal-title">Stakeholder Alignment</div>
+      <div class="signal-what">Engineering and Product agree "this works" — not just the commercial champion</div>
+      <div class="signal-proof">✓ Eng + Product agree "this works"</div>
+    </div>
+    <div class="signal-card" onclick="toggleSignal(this, 3)">
+      <div class="signal-num">SIGNAL 04</div>
+      <div class="signal-title">Risk Resolution</div>
+      <div class="signal-what">No open technical blockers — integration, migration, security, ownership risks surfaced and addressed</div>
+      <div class="signal-proof">✓ No open blockers including in Slack/email threads</div>
+    </div>
+    <div class="signal-card" onclick="toggleSignal(this, 4)" style="grid-column: 1 / -1;">
+      <div class="signal-num">SIGNAL 05 — REQUIRED</div>
+      <div class="signal-title">Decision Confidence</div>
+      <div class="signal-what">Customer explicitly confirms the solution will work. Conversation shifts from "can it work?" to "how do we roll this out?"</div>
+      <div class="signal-proof">✓ Customer discussing rollout and next steps</div>
+    </div>
+  </div>
+
+  <div class="win-bar-wrap" id="winBar">
+    <div class="win-bar-label">
+      <span>Technical Win Progress</span>
+      <span id="winPct">0 / 5 signals</span>
+    </div>
+    <div class="win-bar-track">
+      <div class="win-bar-fill" id="winFill" style="width:0%"></div>
+    </div>
+  </div>
+
+  <div class="section-head" style="margin-top:36px;">
+    <h2 style="font-size:18px;">The Four Stages</h2>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-label">Stage 1</div>
+      <div class="tl-title">Technical Win Readiness (Prepare)</div>
+      <div class="tl-body">
+        Is the deal ready for SE engagement? Required before SE accepts a request:
+        <ul>
+          <li>Clear "why now" — trigger and urgency identified</li>
+          <li>Defined messaging use case</li>
+          <li>Understanding of root cause</li>
+          <li>High-level customer environment known (tools, data, channels)</li>
+          <li>Stakeholders identified, meeting objective defined</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-label">Stage 2</div>
+      <div class="tl-title">Validation (Build)</div>
+      <div class="tl-body">
+        Prove the solution works in the customer's environment:
+        <ul>
+          <li>Messaging use case can be executed end-to-end</li>
+          <li>OneSignal fits within customer architecture and data flow</li>
+          <li>Messaging can be triggered and orchestrated as required</li>
+          <li>Solution is feasible in their specific environment</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-label">Stage 3</div>
+      <div class="tl-title">Commitment (Secure)</div>
+      <div class="tl-body">
+        All signals aligned, deal ready to move:
+        <ul>
+          <li>All 5 Technical Win signals present</li>
+          <li>Stakeholders aligned on feasibility and ownership</li>
+          <li>Minimal open technical questions</li>
+          <li>Clear agreement on next steps (POC, rollout, or commercial)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-label">Stage 4</div>
+      <div class="tl-title">Technical Win (Support Close)</div>
+      <div class="tl-body">
+        Remove all remaining risk, confirm full confidence:
+        <ul>
+          <li>Implementation approach confirmed</li>
+          <li>Ownership validated (who does what)</li>
+          <li>All risks resolved, stakeholders aligned</li>
+          <li>Customer has decision confidence — ready to close</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ -->
+<!-- TAB 5: COVERAGE MODEL             -->
+<!-- ═══════════════════════════════════ -->
+<div id="tab-coverage" class="pane">
+  <div class="section-head">
+    <div class="eyebrow">Section 5</div>
+    <h2>The SE Coverage Model</h2>
+    <p>SE is high-impact and capacity-constrained. Not all deals get the same level of support — here's how coverage works and what drives prioritization.</p>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:28px;">
+    <div class="card" style="border-top: 3px solid #4E50D1;">
+      <div class="card-title">🎯 High-Touch (Top Deal Model)</div>
+      <div class="card-body">
+        For your 1–2 most important deals, jointly identified with SE management.
+        <ul style="margin-top:10px;">
+          <li>SE is proactive, pre-aligned, and co-owns the Technical Win</li>
+          <li>Weekly 15-min AE–SE sync (strategy, tech win path, risks)</li>
+          <li>Continuous engagement from Stage 1 through close</li>
+          <li>SE capacity: ~10–12 high-touch deals per SE per quarter</li>
+        </ul>
+        <div style="margin-top:12px; font-size:12px; color:var(--muted);">Primarily: Strategic + select Mid-Market based on deal profile</div>
+      </div>
+    </div>
+    <div class="card" style="border-top: 3px solid #7274DA;">
+      <div class="card-title">📋 Scaled / On-Demand</div>
+      <div class="card-body">
+        For the rest of your pipeline — request-driven support at key moments.
+        <ul style="margin-top:10px;">
+          <li>Submit via Salesforce; SE claims within 24 hours</li>
+          <li>Targeted support: demos, technical Q&amp;A, validation</li>
+          <li>AE owns deal progression; SE provides targeted assist</li>
+          <li>Async options: #ask-solutions-engineering, Office Hours</li>
+        </ul>
+        <div style="margin-top:12px; font-size:12px; color:var(--muted);">Primarily: Mid-Market, Commercial, non-priority Strategic</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-head" style="margin-top:8px;">
+    <h2 style="font-size:18px;">When Capacity is Constrained — How We Prioritize</h2>
+  </div>
+
+  <div class="card" style="margin-bottom:16px;">
+    <div class="card-body">
+      <p style="margin-bottom:12px;">SE Manager and AE leadership work together continuously to trade-off capacity. Prioritization is based on:</p>
+      <div class="decision-tree" style="margin:0; border:none;">
+        <div class="dt-row header">
+          <div class="dt-cell header-cell">Factor</div>
+          <div class="dt-cell header-cell">Signal</div>
+          <div class="dt-cell header-cell">Notes</div>
+        </div>
+        <div class="dt-row">
+          <div class="dt-cell"><strong>1. Technical Win Stage</strong></div>
+          <div class="dt-cell"><span class="badge badge-red">Highest weight</span></div>
+          <div class="dt-cell">Higher stage = higher priority for SE time</div>
+        </div>
+        <div class="dt-row">
+          <div class="dt-cell"><strong>2. Deal Value (NNARR)</strong></div>
+          <div class="dt-cell"><span class="badge badge-amber">High</span></div>
+          <div class="dt-cell">$50K+ threshold is a strong signal for prioritization</div>
+        </div>
+        <div class="dt-row">
+          <div class="dt-cell"><strong>3. Deal Stage</strong></div>
+          <div class="dt-cell"><span class="badge badge-amber">High</span></div>
+          <div class="dt-cell">Stage 3+ given preference when capacity is tight</div>
+        </div>
+        <div class="dt-row">
+          <div class="dt-cell"><strong>4. Technical Complexity</strong></div>
+          <div class="dt-cell"><span class="badge badge-blue">Medium</span></div>
+          <div class="dt-cell">Higher complexity = more SE leverage on outcome</div>
+        </div>
+        <div class="dt-row">
+          <div class="dt-cell"><strong>5. Strategic Importance</strong></div>
+          <div class="dt-cell"><span class="badge badge-blue">Medium</span></div>
+          <div class="dt-cell">Brand, reference value, competitive displacement</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight">
+    <strong>What this means for you:</strong> Not all requests will receive the same level of support. Lower-priority engagements may be delayed, reduced in scope, or handled asynchronously. If your deal isn't getting SE attention, talk to your manager — capacity decisions are made jointly with SE leadership.
+  </div>
+
+  <div class="section-head" style="margin-top:32px;">
+    <h2 style="font-size:18px;">Your SE Team</h2>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Barry <span class="badge badge-navy" style="font-weight:500;">Americas Strategic</span></div>
+      <div class="card-body">Operating 100% on strategic top-10 deals. Proactive, embedded deal partner for highest-priority Americas strategic opportunities.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Joy <span class="badge badge-navy" style="font-weight:500;">Americas Mid-Market</span></div>
+      <div class="card-body">Covers mid-market and non-complex strategic deals in Americas. On-demand and scaled support model.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Claudio <span class="badge badge-navy" style="font-weight:500;">EMEA</span></div>
+      <div class="card-body">Full EMEA coverage across all segments. Submit requests regionally — Claudio coordinates across strategic and on-demand.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Chanelle <span class="badge badge-navy" style="font-weight:500;">APAC</span></div>
+      <div class="card-body">Full APAC coverage across all segments. Regional round-robin model for on-demand requests.</div>
+    </div>
+  </div>
+</div>
+
+<div class="guide-footer">
+  OneSignal Solutions Engineering · SE Operating Playbook · Questions? Ping <strong>#ask-solutions-engineering</strong>
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+function toggleAcc(header) {
+  const body = header.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  // close all
+  document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.acc-header').forEach(h => h.classList.remove('open'));
+  if (!isOpen) {
+    body.classList.add('open');
+    header.classList.add('open');
+  }
+}
+
+const signalState = [false, false, false, false, false];
+function toggleSignal(card, idx) {
+  signalState[idx] = !signalState[idx];
+  card.classList.toggle('done', signalState[idx]);
+  updateBar();
+}
+function updateBar() {
+  const done = signalState.filter(Boolean).length;
+  const pct = (done / 5) * 100;
+  document.getElementById('winFill').style.width = pct + '%';
+  document.getElementById('winPct').textContent = done + ' / 5 signals';
+  const fill = document.getElementById('winFill');
+  fill.style.background = done === 5 ? '#0D7A55' : done >= 3 ? '#4E50D1' : '#7274DA';
+}
+</script>
+</body>
+</html>
