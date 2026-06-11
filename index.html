@@ -403,106 +403,136 @@ body {
 <!-- ═══════════════════════════════════ -->
 <div id="tab-salesmotion" class="pane active">
   <div class="section-head">
-    <div class="eyebrow">Section 1</div>
-    <h2>SE & the Sales Motion</h2>
-    <p>SE runs a parallel track to the AE sales process. Every sales stage has a corresponding SE stage — here's what's happening on both sides of the deal at each step.</p>
-  </div>
+  <div class="eyebrow">Section 1</div>
+  <h2>SE & the Sales Motion</h2>
+  <p>SE runs a parallel track to the AE sales process — but how deeply depends on your deal. <strong>SE covers roughly 50% of pipeline.</strong> That means every AE, especially in Commercial and Mid-Market, owns driving the Technical Win on most of their deals.</p>
+</div>
 
-  <div class="note">
-    <strong>The Technical Win is one of the 5 Wins required to close.</strong> It can't be skipped or waived — a qualified Technical Contact must confirm OneSignal meets requirements before the deal is ready to close.
-  </div>
+<div class="note">
+  <strong>The Technical Win is one of the 5 Wins required to close.</strong> It can't be skipped or waived — a qualified Technical Contact must confirm OneSignal meets requirements before the deal is ready to close. On most deals, the AE drives this with SE as a resource, not the other way around.
+</div>
 
-  <div class="decision-tree" style="margin: 24px 0;">
-    <div class="dt-row header">
-      <div class="dt-cell header-cell">AE Stage</div>
-      <div class="dt-cell header-cell">SE Stage</div>
-      <div class="dt-cell header-cell">SE Engagement</div>
-    </div>
-    <div class="dt-row">
-      <div class="dt-cell"><strong>Stage 0 — Handoff</strong><br><span style="font-size:11px;color:var(--muted)">Qualify the opportunity</span></div>
-      <div class="dt-cell"><strong>No SE engagement</strong></div>
-      <div class="dt-cell">AE qualifies independently. SE is not involved unless it's a designated Top Deal.</div>
-    </div>
-    <div class="dt-row">
-      <div class="dt-cell"><strong>Stage 1 — Diagnose</strong><br><span style="font-size:11px;color:var(--muted)">Understand the problem</span></div>
-      <div class="dt-cell"><strong>Prepare Technical Win</strong><br><span style="font-size:11px;color:var(--muted)">Define & qualify the use case</span></div>
-      <div class="dt-cell">Light async support. SE reviews discovery notes, flags integration complexity, and ensures the opportunity meets Technical Win Readiness before solutioning begins. <strong>No full demo, trial, or POC at this stage.</strong></div>
-    </div>
-    <div class="dt-row">
-      <div class="dt-cell"><strong>Stage 2 — Prescribe</strong><br><span style="font-size:11px;color:var(--muted)">Align solution</span></div>
-      <div class="dt-cell"><strong>Build Technical Win</strong><br><span style="font-size:11px;color:var(--muted)">Validate solution & architecture</span></div>
-      <div class="dt-cell">SE leads custom demo, technical discovery, and architecture validation. Builds core Technical Win signals: use case validation, architecture fit, stakeholder alignment, initial risk identification. <strong>No POC yet.</strong></div>
-    </div>
-    <div class="dt-row">
-      <div class="dt-cell"><strong>Stage 3 — Recommend</strong><br><span style="font-size:11px;color:var(--muted)">Drive decision</span></div>
-      <div class="dt-cell"><strong>Secure Technical Win</strong><br><span style="font-size:11px;color:var(--muted)">Prove & confirm solution fit</span></div>
-      <div class="dt-cell">SE runs final validation — POC, POV, or competitive bake-off if required. Confirms all 5 Technical Win signals. Customer explicitly confirms OneSignal meets their requirements.</div>
-    </div>
-    <div class="dt-row">
-      <div class="dt-cell"><strong>Stage 4 — Trade</strong><br><span style="font-size:11px;color:var(--muted)">Remove blockers</span></div>
-      <div class="dt-cell"><strong>Support Close & Unblock</strong><br><span style="font-size:11px;color:var(--muted)">Remove final risk</span></div>
-      <div class="dt-cell">Targeted, minimal SE involvement. Security/InfoSec discussions, architecture confirmation, final implementation questions. <strong>No demos, trials, or POCs.</strong></div>
-    </div>
-    <div class="dt-row">
-      <div class="dt-cell"><strong>Stage 5 — Closed Won</strong><br><span style="font-size:11px;color:var(--muted)">Close the deal</span></div>
-      <div class="dt-cell"><strong>Post-Sales Transition</strong><br><span style="font-size:11px;color:var(--muted)">Ensure continuity</span></div>
-      <div class="dt-cell">SE documents technical context, integration approach, and open items. Briefs CSM on setup requirements. Flags risks and dependencies for onboarding.</div>
+<div class="highlight" style="margin-bottom: 28px;">
+  <strong>Which model applies to you?</strong> If your deal is a jointly identified Top Deal with SE leadership — you're in High-Touch. Everything else is Scaled / On-Demand. When in doubt, assume Scaled and pull in SE at key moments.
+</div>
+
+<!-- STAGE TABLE -->
+<div class="decision-tree" style="margin: 0 0 36px 0;">
+  <div class="dt-row header">
+    <div class="dt-cell header-cell" style="width:20%">AE Stage</div>
+    <div class="dt-cell header-cell" style="width:40%">🎯 High-Touch (Top Deals)<br><span style="font-weight:400; font-size:10px; opacity:0.7;">SE is proactive co-owner of the Technical Win</span></div>
+    <div class="dt-cell header-cell" style="width:40%">📋 Scaled / On-Demand<br><span style="font-weight:400; font-size:10px; opacity:0.7;">AE drives the Technical Win — SE supports at key moments</span></div>
+  </div>
+  <div class="dt-row">
+    <div class="dt-cell"><strong>Stage 0</strong><br><span style="font-size:11px;color:var(--muted)">Handoff</span></div>
+    <div class="dt-cell">SE engaged early, reviews discovery with AE, begins shaping the use case and technical strategy.</div>
+    <div class="dt-cell">No SE involvement. AE qualifies independently.</div>
+  </div>
+  <div class="dt-row">
+    <div class="dt-cell"><strong>Stage 1</strong><br><span style="font-size:11px;color:var(--muted)">Diagnose</span></div>
+    <div class="dt-cell">SE joins discovery, helps define the use case, flags integration complexity early. Weekly AE–SE syncs begin.</div>
+    <div class="dt-cell">No SE by default. AE completes SPICED and defines the messaging use case. SE available async via <strong>#ask-solutions-engineering</strong> or Office Hours if questions arise.</div>
+  </div>
+  <div class="dt-row">
+    <div class="dt-cell"><strong>Stage 2</strong><br><span style="font-size:11px;color:var(--muted)">Prescribe</span></div>
+    <div class="dt-cell">SE leads custom demo, technical discovery, and architecture validation. Owns progression of Use Case Validation, Architecture Fit, and initial Stakeholder Alignment.</div>
+    <div class="dt-cell"><strong>AE leads the demo and use case validation.</strong> Standard demos can and should be run by AEs. Submit an SE request for custom demos on complex deals, technical architecture questions, or when a specific blocker needs SE depth. No POC at this stage.</div>
+  </div>
+  <div class="dt-row">
+    <div class="dt-cell"><strong>Stage 3</strong><br><span style="font-size:11px;color:var(--muted)">Recommend</span></div>
+    <div class="dt-cell">SE runs final validation — POC, POV, or competitive bake-off. Confirms all 5 Technical Win signals. Drives technical stakeholder alignment to decision confidence.</div>
+    <div class="dt-cell">AE drives toward Technical Win confirmation. SE brought in for targeted validation — technical Q&A, architecture sign-off, or POC scoping if a specific blocker exists. AE confirms solution fit with the technical contact directly where possible.</div>
+  </div>
+  <div class="dt-row">
+    <div class="dt-cell"><strong>Stage 4</strong><br><span style="font-size:11px;color:var(--muted)">Trade</span></div>
+    <div class="dt-cell">SE handles InfoSec/security discussions, final architecture confirmation, implementation planning.</div>
+    <div class="dt-cell">SE available for InfoSec and final technical questions. AE drives commercial close. No demos, trials, or POCs.</div>
+  </div>
+  <div class="dt-row">
+    <div class="dt-cell"><strong>Stage 5</strong><br><span style="font-size:11px;color:var(--muted)">Closed Won</span></div>
+    <div class="dt-cell">SE documents full technical context, briefs CSM on integration setup, flags risks and dependencies.</div>
+    <div class="dt-cell">SE provides technical summary for handoff brief if engaged. AE completes SFDC Handoff Brief and CSM intro.</div>
+  </div>
+</div>
+
+<!-- AE OWNS THE TECH WIN ON SCALED DEALS -->
+<div class="section-head">
+  <h2 style="font-size:18px;">On Scaled Deals — You Own the Technical Win</h2>
+</div>
+
+<div class="card" style="border-top: 3px solid #4E50D1; margin-bottom: 16px;">
+  <div class="card-body">
+    <p style="margin-bottom: 12px;">SE covers roughly 50% of pipeline. For the other half, AEs are expected to drive the Technical Win themselves — with SE as a resource you can pull in at specific moments, not a dependency for every technical conversation.</p>
+    <p><strong>What this means in practice:</strong></p>
+    <ul style="margin-top: 8px;">
+      <li><strong>Standard demos are yours to run</strong> — use the demo template, recap pain and value pillars, and drive toward use case validation yourself</li>
+      <li><strong>Basic technical questions</strong> — use <strong>#ask-solutions-engineering</strong> or Office Hours rather than submitting a full request</li>
+      <li><strong>Technical Win signals</strong> — you can advance Use Case Validation and Stakeholder Alignment without SE on lower-complexity deals</li>
+      <li><strong>Pull in SE when</strong> — architecture gets complex, a POC needs scoping, a competitive bake-off is required, or InfoSec enters the picture</li>
+    </ul>
+  </div>
+</div>
+
+<!-- TECH WIN TYPES -->
+<div class="section-head" style="margin-top: 32px;">
+  <h2 style="font-size:18px;">The Technical Win — Your ② of the 5 Wins</h2>
+</div>
+
+<div class="grid-2">
+  <div class="card" style="border-top: 3px solid #4E50D1;">
+    <div class="card-title">Confirmation Win</div>
+    <div class="card-body">AE or SE confirms requirements can be met without a full POC. Used when the use case is clear, architecture is straightforward, and no specific blocker requires structured testing. <strong>This is the default path on most deals.</strong></div>
+  </div>
+  <div class="card" style="border-top: 3px solid #7274DA;">
+    <div class="card-title">POC-Driven Win</div>
+    <div class="card-body">Customer tests against agreed success criteria and a defined timeline. Only introduced at Stage 3 after all core validation is complete and a specific blocker remains before signing. Always scope with SE — never commit to a POC unilaterally.</div>
+  </div>
+</div>
+
+<div class="highlight" style="margin-top: 16px;">
+  <strong>POC is a late-stage lever, not a default.</strong> On most Commercial and Mid-Market deals, a well-run demo and architecture discussion is enough to confirm the Technical Win. A POC should only be introduced when a specific, named blocker exists that can't be resolved another way.
+</div>
+
+<!-- OWNERSHIP SPLIT -->
+<div class="section-head" style="margin-top: 36px;">
+  <h2 style="font-size:18px;">Who Owns What</h2>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <div class="card-title">AE owns on every deal</div>
+    <div class="card-body">
+      <ul>
+        <li>Overall deal progression and momentum</li>
+        <li>SPICED discovery — complete before SE engages</li>
+        <li>Stakeholder mapping and EB access</li>
+        <li>Business case and commercial negotiations</li>
+        <li>Translating business challenges into messaging use cases</li>
+        <li>Standard demos and basic use case validation</li>
+        <li>SFDC hygiene — SE notes, Technical Win status updates</li>
+      </ul>
     </div>
   </div>
-
-  <div class="section-head" style="margin-top: 36px;">
-    <h2 style="font-size:18px;">The Technical Win — Your ② of the 5 Wins</h2>
-  </div>
-
-  <div class="grid-2">
-    <div class="card" style="border-top: 3px solid #4E50D1;">
-      <div class="card-title">Confirmation Win</div>
-      <div class="card-body">SE and AE confirm requirements can be met without a full POC. Used when the use case is clear, architecture is validated, and no specific blocker requires structured testing.</div>
-    </div>
-    <div class="card" style="border-top: 3px solid #7274DA;">
-      <div class="card-title">POC-Driven Win</div>
-      <div class="card-body">Customer builds or tests with OneSignal against agreed success criteria and a defined timeline. Only introduced at Stage 3 after all core validation steps are complete and a specific blocker remains.</div>
-    </div>
-  </div>
-
-  <div class="highlight" style="margin-top: 24px;">
-    <strong>POC is a late-stage lever, not a default.</strong> A POC should only be scoped when the customer has confirmed strong solution fit, all core validation is complete, and a specific blocker remains before signing. Always involve SE before committing to an evaluation.
-  </div>
-
-  <div class="section-head" style="margin-top: 36px;">
-    <h2 style="font-size:18px;">What AEs Own vs. What SEs Own</h2>
-  </div>
-
-  <div class="grid-2">
-    <div class="card">
-      <div class="card-title">AE owns throughout</div>
-      <div class="card-body">
-        <ul>
-          <li>Overall deal progression and momentum</li>
-          <li>SPICED discovery — complete before SE engages</li>
-          <li>Stakeholder mapping and EB access</li>
-          <li>Business case and commercial negotiations</li>
-          <li>Translating business challenges into clear messaging use cases</li>
-          <li>SFDC hygiene — SE notes, Technical Win status</li>
-        </ul>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-title">SE owns when engaged</div>
-      <div class="card-body">
-        <ul>
-          <li>Technical Win strategy and progression</li>
-          <li>Use case validation and demo execution</li>
-          <li>Architecture and data flow validation</li>
-          <li>Risk identification and resolution</li>
-          <li>POC scoping, structure, and success criteria</li>
-          <li>Technical stakeholder alignment (Product / Engineering)</li>
-        </ul>
-      </div>
+  <div class="card">
+    <div class="card-title">SE owns when engaged</div>
+    <div class="card-body">
+      <ul>
+        <li>Technical Win strategy on High-Touch deals</li>
+        <li>Custom demo design and execution on complex deals</li>
+        <li>Architecture and data flow validation</li>
+        <li>Risk identification and resolution</li>
+        <li>POC scoping, structure, and success criteria</li>
+        <li>Technical stakeholder alignment (Product / Engineering)</li>
+        <li>InfoSec, security review, and compliance discussions</li>
+      </ul>
     </div>
   </div>
 </div>
-  
+
+
+  <!-- ═══════════════════════════════════ -->
+<!-- TAB 2: WHEN TO ENGAGE SE          -->
+<!-- ═══════════════════════════════════ -->
   <div id="tab-when" class="pane">
   <div class="section-head">
     <div class="eyebrow">Section 1</div>
